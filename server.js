@@ -6,22 +6,22 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const app = express();
-const SECRET = "mysecretkey";
+const SECRET = process.env.JWT_SECRET || "mysecretkey";
 
 /* MIDDLEWARE */
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.use(cors());
-
-/* DATABASE */
-mongoose.connect("mongodb://127.0.0.1:27017/marketingDB")
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+app.use(express.static(path.join(__dirname, "public")));
 
 /* MODELS */
 const User = require("./models/User");
-const Message = require("./models/Message"); // (optional for dashboard only)
+const Message = require("./models/Message");
+
+/* DATABASE */
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("DB ERROR:", err));
 
 /* AUTH MIDDLEWARE */
 function auth(req, res, next) {
@@ -52,6 +52,11 @@ function adminOnly(req, res, next) {
   next();
 }
 
+/* TEST ROUTE */
+app.get("/test", (req, res) => {
+  res.send("Server working");
+});
+
 /* HOME PAGE */
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -62,6 +67,10 @@ app.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
     const oldUser = await User.findOne({ email });
     if (oldUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -69,29 +78,44 @@ app.post("/signup", async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    await new User({
+    const user = await new User({
       name,
       email,
       password: hash,
       role: "user"
     }).save();
 
-    res.json({ message: "Signup successful" });
+    return res.status(201).json({
+      message: "Signup successful",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (error) {
-    res.status(500).json({ message: "Signup failed" });
+    console.error("SIGNUP ERROR:", error);
+    return res.status(500).json({ message: error.message || "Signup failed" });
   }
 });
 
 /* LOGIN */
 app.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }
 
-    const valid = await bcrypt.compare(req.body.password, user.password);
+    const valid = await bcrypt.compare(password, user.password);
 
     if (!valid) {
       return res.status(400).json({ message: "Wrong password" });
@@ -108,14 +132,16 @@ app.post("/login", async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.json({
+    return res.json({
       message: "Login success",
       token,
       role: user.role,
-      name: user.name
+      name: user.name,
+      email: user.email
     });
   } catch (error) {
-    res.status(500).json({ message: "Login failed" });
+    console.error("LOGIN ERROR:", error);
+    return res.status(500).json({ message: error.message || "Login failed" });
   }
 });
 
@@ -123,8 +149,6 @@ app.post("/login", async (req, res) => {
 app.get("/stats", auth, async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
-
-    // OPTIONAL (if you still use Message model)
     const totalMessages = await Message.countDocuments();
 
     const latestMessages = await Message.find()
@@ -139,33 +163,44 @@ app.get("/stats", auth, async (req, res) => {
       "Twitter Event Promotion Strategy"
     ];
 
-    res.json({
+    return res.json({
       totalUsers,
       totalMessages,
       latestMessages,
       campaignIdeas
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to load dashboard stats" });
+    console.error("STATS ERROR:", error);
+    return res.status(500).json({ message: error.message || "Failed to load dashboard stats" });
   }
 });
 
-/* ADMIN: VIEW ALL MESSAGES (OPTIONAL) */
+/* ADMIN: VIEW ALL MESSAGES */
 app.get("/messages", auth, adminOnly, async (req, res) => {
   try {
     const messages = await Message.find().sort({ createdAt: -1 });
-    res.json(messages);
+    return res.json(messages);
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch messages" });
+    console.error("MESSAGES ERROR:", error);
+    return res.status(500).json({ message: error.message || "Failed to fetch messages" });
+  }
+});
+
+/* CONTACT */
+app.post("/contact", async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    await Message.create({ name, email, message });
+
+    return res.json({ message: "Message saved successfully" });
+  } catch (error) {
+    console.error("CONTACT ERROR:", error);
+    return res.status(500).json({ message: error.message || "Failed to save message" });
   }
 });
 
 /* SERVER START */
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
-});
-// all routes, middleware above...
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
