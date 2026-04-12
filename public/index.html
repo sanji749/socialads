@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Social Ads Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#071827;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#2563eb;
+      --radius:16px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      background:linear-gradient(180deg,#071028,#071827);
+      color:white;
+    }
+
+    .wrap{
+      max-width:1200px;
+      margin:auto;
+      padding:24px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom:30px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      font-size:1.1rem;
+    }
+
+    .mark{
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      background:linear-gradient(135deg,#2563eb,#60a5fa);
+      display:grid;
+      place-items:center;
+    }
+
+    .nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .nav a:hover{
+      color:white;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+      margin-bottom:34px;
+    }
+
+    .hero-box{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px;
+    }
+
+    .hero-box h1{
+      margin:0 0 12px;
+      font-size:2.2rem;
+    }
+
+    .hero-box p{
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:10px;
+      background:var(--accent);
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .btn.secondary{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+
+    .hero-image img{
+      width:100%;
+      height:100%;
+      min-height:320px;
+      object-fit:cover;
+      border-radius:var(--radius);
+      display:block;
+    }
+
+    .section-title{
+      margin:34px 0 18px;
+      font-size:1.6rem;
+    }
+
+    .platforms{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:14px;
+      padding:18px;
+    }
+
+    .card i{
+      font-size:24px;
+      margin-bottom:10px;
+      color:#60a5fa;
+    }
+
+    .card h3{
+      margin:0 0 8px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .about{
+      background:var(--card);
+      padding:24px;
+      border-radius:16px;
+      line-height:1.7;
+      color:#dbe4ee;
+    }
+
+    .form-box{
+      background:var(--card);
+      padding:24px;
+      border-radius:16px;
+      margin-top:24px;
+    }
+
+    form{
+      display:grid;
+      gap:12px;
+    }
+
+    input, textarea{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:#111b2d;
+      color:white;
+      outline:none;
+    }
+
+    button{
+      padding:12px 16px;
+      border:none;
+      border-radius:10px;
+      background:var(--accent);
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .status{
+      margin-top:12px;
+      color:#93c5fd;
+    }
+
+    footer{
+      margin-top:40px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    @media (max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+      }
+      .platforms{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      .platforms{
+        grid-template-columns:1fr;
+      }
+      .hero-box h1{
+        font-size:1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="mark"><i class="fa-brands fa-facebook-f"></i></div>
+        Social Ads Studio
+      </div>
+
+      <nav class="nav">
+        <a href="#platforms">Platforms</a>
+        <a href="ideas.html">Idea</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Signup</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-box">
+        <h1>Advertisement on social media</h1>
+        <p>
+          We design conversion-focused campaigns, creative assets, and measurable reporting that scale.
+          Promote your brand across Facebook, Instagram, YouTube, email, and more.
+        </p>
+
+        <div class="hero-actions">
+          <a href="signup.html" class="btn">Get Started</a>
+          <a href="ideas.html" class="btn secondary">View Ideas</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="Marketing team">
+      </div>
+    </section>
+
+    <h2 class="section-title" id="platforms">Platforms We Work With</h2>
+
+    <section class="platforms">
+      <div class="card">
+        <i class="fa-brands fa-facebook"></i>
+        <h3>Facebook Ads</h3>
+        <p>Targeted lead generation, retargeting, carousel creatives, and conversion-focused campaigns.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-brands fa-instagram"></i>
+        <h3>Instagram Ads</h3>
+        <p>Reels-first strategy, brand storytelling, influencer support, and engaging visual campaigns.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-brands fa-youtube"></i>
+        <h3>YouTube Ads</h3>
+        <p>High-attention video campaigns, awareness ads, short-form hooks, and product storytelling.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Email Marketing</h3>
+        <p>Newsletter design, promotional campaigns, customer onboarding, and offer-driven email funnels.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-brands fa-x-twitter"></i>
+        <h3>Twitter Campaigns</h3>
+        <p>Real-time promotion, event-driven campaigns, conversations, and trend-based audience reach.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Reporting</h3>
+        <p>Track performance with clean reporting, conversion monitoring, and creative optimization insights.</p>
+      </div>
+    </section>
+
+    <h2 class="section-title">About Us</h2>
+
+    <section class="about">
+      We are a creative and tech-driven team dedicated to helping businesses grow through the power of digital marketing.
+      Our goal is to plan and manage effective advertising campaigns on platforms such as Facebook, Instagram, YouTube,
+      Twitter, and email. By combining creativity with technology, we deliver impactful campaigns that attract the right
+      audience and generate measurable results.
+      <br><br>
+      We believe advertising is not just about visibility — it is about connection and conversion. Whether you are
+      launching a new brand or scaling an existing one, we help you tell your story, reach the ideal audience,
+      and turn clicks into customers.
+    <section class="form-box">
+  <h2>Message Me</h2>
+
+  <form action="https://formspree.io/f/mjgpdpqd" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+    <textarea name="message" rows="5" placeholder="Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+    <footer>
+      © krish@1234 — Crafted for marketers
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+      };
+
+      const res = await fetch("/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      document.getElementById("formStatus").innerText = data.message;
+
+      if (res.ok) {
+        document.getElementById("contactForm").reset();
+      }
+    });
+  </script>
+</body>
+</html>

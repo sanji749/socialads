@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Templates & Ideas</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#071827;
+      color:white;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:30px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+
+    .topbar h1{
+      margin:0;
+      font-size:32px;
+    }
+
+    .topbar p{
+      margin:8px 0 0;
+      color:#9aa4b2;
+    }
+
+    .btn{
+      padding:10px 16px;
+      border:none;
+      border-radius:8px;
+      background:#2563eb;
+      color:white;
+      text-decoration:none;
+      display:inline-block;
+      cursor:pointer;
+    }
+
+    .hero{
+      background:#0b1220;
+      border-radius:16px;
+      padding:28px;
+      margin-bottom:28px;
+      box-shadow:0 10px 24px rgba(0,0,0,0.25);
+    }
+
+    .hero h2{
+      margin:0 0 10px;
+      font-size:28px;
+    }
+
+    .hero p{
+      margin:0;
+      color:#9aa4b2;
+      line-height:1.6;
+      max-width:800px;
+    }
+
+    .category-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#0b1220;
+      border-radius:16px;
+      overflow:hidden;
+      text-decoration:none;
+      color:white;
+      box-shadow:0 10px 24px rgba(0,0,0,0.25);
+      transition:transform 0.25s ease, box-shadow 0.25s ease;
+      display:block;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 14px 28px rgba(0,0,0,0.35);
+    }
+
+    .card img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .card-content{
+      padding:18px;
+    }
+
+    .card-content h3{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .card-content p{
+      margin:0 0 14px;
+      color:#9aa4b2;
+      line-height:1.5;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.07);
+      color:#dbe4ee;
+      font-size:13px;
+      margin-right:8px;
+      margin-top:6px;
+    }
+
+    .section-title{
+      margin:34px 0 18px;
+      font-size:24px;
+    }
+
+    .tips{
+      background:#0b1220;
+      border-radius:16px;
+      padding:22px;
+      color:#dbe4ee;
+      line-height:1.7;
+    }
+
+    .tips ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .tips li{
+      margin-bottom:10px;
+    }
+
+    @media (max-width:700px){
+      .topbar h1{
+        font-size:26px;
+      }
+
+      .hero h2{
+        font-size:22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <h1>Templates & Ideas</h1>
+        <p>Explore ready inspiration for ad campaigns, creative posts, video thumbnails, and email promotions.</p>
+      </div>
+      <a href="index.html" class="btn">Back to Home</a>
+    </div>
+
+    <div class="hero">
+      <h2>Creative inspiration for every campaign</h2>
+      <p>
+        This section helps users discover campaign styles by category. Each card opens a dedicated page
+        with examples, design direction, and a link to external inspiration if needed. It makes your website
+        feel more like a real creative marketing platform instead of just a gallery of random images.
+      </p>
+    </div>
+
+    <h2 class="section-title">Browse by Category</h2>
+
+    <div class="category-grid">
+      <a href="facebook-ads.html" class="card">
+        <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?q=80&w=1200&auto=format&fit=crop" alt="Facebook Ads">
+        <div class="card-content">
+          <h3>Facebook Ads</h3>
+          <p>Lead generation, retargeting, carousel campaigns, and conversion-focused ad creatives.</p>
+          <span class="tag">Lead Gen</span>
+          <span class="tag">Carousel Ads</span>
+          <span class="tag">Retargeting</span>
+        </div>
+      </a>
+
+      <a href="instagram-posts.html" class="card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Instagram Posts">
+        <div class="card-content">
+          <h3>Instagram Posts</h3>
+          <p>Modern post layouts, reels inspiration, story campaigns, and visually strong brand creatives.</p>
+          <span class="tag">Reels</span>
+          <span class="tag">Stories</span>
+          <span class="tag">Branding</span>
+        </div>
+      </a>
+
+      <a href="youtube-thumbnails.html" class="card">
+        <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=1200&auto=format&fit=crop" alt="YouTube Thumbnails">
+        <div class="card-content">
+          <h3>YouTube Thumbnails</h3>
+          <p>Video-first promotional visuals with strong hooks, bold text, and higher click-through appeal.</p>
+          <span class="tag">Thumbnails</span>
+          <span class="tag">Video Ads</span>
+          <span class="tag">CTR Focus</span>
+        </div>
+      </a>
+
+      <a href="email-campaigns.html" class="card">
+        <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop" alt="Email Campaigns">
+        <div class="card-content">
+          <h3>Email Campaigns</h3>
+          <p>Newsletter design, product promotions, welcome journeys, and conversion-focused email layouts.</p>
+          <span class="tag">Newsletter</span>
+          <span class="tag">Offers</span>
+          <span class="tag">Automation</span>
+        </div>
+      </a>
+    </div>
+
+    <h2 class="section-title">Creative Tips</h2>
+    <div class="tips">
+      <ul>
+        <li>Use one clear message in each template instead of trying to say everything at once.</li>
+        <li>Keep branding consistent with color, font style, and visual mood across all campaign types.</li>
+        <li>Use a strong call to action such as Shop Now, Learn More, Book Today, or Get Started.</li>
+        <li>Test multiple versions of headlines, visuals, and layouts to find which creative performs better.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

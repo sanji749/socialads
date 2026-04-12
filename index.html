@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Social Ads Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent:#2563eb;
+  --accent-2:#ea580c;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter;
+  background:linear-gradient(180deg,#071028,#071827);
+  color:white;
+  overflow-x:hidden;
+}
+.wrap{max-width:1100px;margin:auto;padding:20px}
+
+/* HEADER */
+header{display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;gap:10px;font-weight:bold}
+.mark{
+  width:40px;height:40px;background:#2563eb;
+  display:grid;place-items:center;border-radius:10px
+}
+.nav a{color:#9aa4b2;margin-left:15px;text-decoration:none}
+
+/* HERO */
+.hero{margin-top:30px}
+h1{font-size:2rem}
+.lead{color:var(--muted)}
+
+/* CARDS */
+.platforms{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+.card{
+  background:#0b1220;
+  padding:15px;
+  border-radius:12px;
+}
+
+/* EXAMPLES */
+.examples{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:30px;
+}
+.example img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* FORM */
+form{margin-top:20px}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border-radius:8px;
+  border:none;
+}
+button{
+  margin-top:10px;
+  padding:10px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{text-align:center;margin-top:40px;color:gray}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="logo">
+    <div class="mark"><i class="fa-brands fa-facebook-f"></i></div>
+    Social Ads Studio
+  </div>
+
+  <nav class="nav">
+    <a href="#platforms">Platforms</a>
+    <a href="ideas.html">Idea</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+  </nav>
+</header>
+
+<section class="hero">
+<h1>Advertisement on social media</h1>
+<p class="lead">We design conversion-focused campaigns and creative ads.</p>
+
+<div class="platforms" id="platforms">
+
+<div class="card">
+<i class="fa-brands fa-facebook"></i>
+<h3>Facebook Ads</h3>
+<p>Targeted audience marketing</p>
+<a href="https://www.facebook.com/business/tools/facebook-ads/get-started">Meta Ads Campaign</a>
+</div>
+
+<div class="card">
+<i class="fa-brands fa-instagram"></i>
+<h3>Instagram Ads</h3>
+<p>Reels & influencer marketing</p>
+<a href="https://sproutsocial.com/insights/instagram-advertising/">Influencer Marketing</a>
+</div>
+
+<div class="card">
+<i class="fa-brands fa-youtube"></i>
+<h3>YouTube Ads</h3>
+<p>Video marketing campaigns</p>
+<a href="https://www.youtube.com/intl/en_id/ads/">Video Ads</a>
+</div>
+
+<div class="card">
+<i class="fa-brands fa-x-twitter"></i>
+<h3>Twitter Ads</h3>
+<p>Real-time promotion</p>
+<a href="https://business.x.com/en/help/troubleshooting/how-x-ads-work">Campaign Design</a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-envelope"></i>
+<h3>Email Marketing</h3>
+<p>Promotional email campaigns</p>
+<a href="https://www.benchmarkemail.com/">Email Campaign</a>
+</div>
+
+<div class="card">
+<i class="fa-solid fa-bullhorn"></i>
+<h3>Affiliate Marketing</h3>
+<p>Earn through referrals</p>
+<a href="https://leadsguru.in/">Affiliate Project</a>
+</div>
+
+</div>
+</section>
+
+<section class="examples" id="examples">
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1559526324-593bc073d938">
+<h4>Facebook Campaign</h4>
+</div>
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
+<h4>Instagram Ads</h4>
+</div>
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40">
+<h4>YouTube Ads</h4>
+</div>
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+<h4>Twitter Ads</h4>
+</div>
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1542744094-24638eff58bb">
+<h4>Reporting</h4>
+</div>
+
+<div class="example">
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<h4>Creative Team</h4>
+</div>
+
+</section>
+
+<h2>Message Me..</h2>
+
+<form id="contactForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <br><br>
+
+  <label for="subject">Subject:</label>
+  <input type="text" id="subject" name="subject" required>
+
+  <br><br>
+
+  <label for="phone">Phone No:</label>
+  <input type="text" id="phone" name="phone" required>
+
+  <br><br>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+
+  <br><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+<p id="formStatus"></p>
+
+<footer>
+© krish@1234 — Crafted for marketers
+</footer>
+
+</div>
+
+</body>
+</html>

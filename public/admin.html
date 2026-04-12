@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Panel</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#071827;
+      color:white;
+      padding:30px;
+    }
+    h1{
+      text-align:center;
+      margin-bottom:30px;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#0b1220;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    th,td{
+      border:1px solid rgba(255,255,255,0.08);
+      padding:12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{
+      background:#2563eb;
+      color:white;
+    }
+    tr:nth-child(even){
+      background:rgba(255,255,255,0.03);
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+    button{
+      padding:10px 16px;
+      border:none;
+      border-radius:8px;
+      background:#2563eb;
+      color:white;
+      cursor:pointer;
+    }
+    .empty{
+      text-align:center;
+      color:#9aa4b2;
+      margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Admin Panel</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <table id="messageTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Phone</th>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="messageBody"></tbody>
+  </table>
+
+  <p id="emptyMsg" class="empty">Loading messages...</p>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    if(!token){
+      alert("Please login first");
+      window.location.href = "login.html";
+    }
+
+    if(role !== "admin"){
+      alert("Admin access only");
+      window.location.href = "dashboard.html";
+    }
+
+    function logout(){
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+
+    async function loadMessages(){
+      try{
+        const res = await fetch("/messages", {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        });
+
+        const data = await res.json();
+
+        if(!res.ok){
+          document.getElementById("emptyMsg").innerText = data.message || "Failed to load messages.";
+          return;
+        }
+
+        const tbody = document.getElementById("messageBody");
+        const table = document.getElementById("messageTable");
+        const emptyMsg = document.getElementById("emptyMsg");
+
+        if(!data.length){
+          emptyMsg.innerText = "No messages found.";
+          return;
+        }
+
+        table.style.display = "table";
+        emptyMsg.style.display = "none";
+
+        data.forEach(msg => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${msg.name || ""}</td>
+            <td>${msg.email || ""}</td>
+            <td>${msg.subject || ""}</td>
+            <td>${msg.phone || ""}</td>
+            <td>${msg.message || ""}</td>
+            <td>${new Date(msg.createdAt).toLocaleString()}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }catch(error){
+        document.getElementById("emptyMsg").innerText = "Failed to load messages.";
+      }
+    }
+
+    loadMessages();
+  </script>
+</body>
+</html>
